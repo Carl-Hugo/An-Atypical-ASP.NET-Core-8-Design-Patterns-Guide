@@ -2,11 +2,11 @@
 
 namespace NinjaShared;
 
-public interface IAttacker : IAttackable
+public interface IAttacker : ITarget
 {
-    AttackResult Attack(IAttackable target);
+    AttackResult Attack(ITarget target);
 }
-public interface IAttackable
+public interface ITarget
 {
     string Name { get; }
     Vector2 Position { get; set; }
@@ -48,7 +48,7 @@ public class AttackResult
     public bool Succeeded { get; }
     public float Distance { get; }
 
-    public AttackResult(Weapon weapon, IAttacker attacker, IAttackable target)
+    public AttackResult(Weapon weapon, IAttacker attacker, ITarget target)
     {
         Weapon = $"{weapon.Name} (Min: {weapon.MinRanged}, Max: {weapon.MaxRanged})";
         Attacker = $"{attacker.Name} (Position: {attacker.Position})";
@@ -60,12 +60,12 @@ public class AttackResult
 
 public static class AttackableExtensions
 {
-    public static float DistanceFrom(this IAttackable attacker, IAttackable target)
+    public static float DistanceFrom(this ITarget attacker, ITarget target)
     {
         return Vector2.Distance(attacker.Position, target.Position);
     }
 
-    public static IAttackable MoveTo(this IAttackable target, float x, float y)
+    public static ITarget MoveTo(this ITarget target, float x, float y)
     {
         target.Position = new Vector2(x, y);
         return target;

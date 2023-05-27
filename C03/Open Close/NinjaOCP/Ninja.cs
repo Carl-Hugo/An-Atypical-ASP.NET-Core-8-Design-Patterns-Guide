@@ -19,7 +19,7 @@ public class Ninja : IAttacker
         _rangedWeapon = rangedWeapon;
     }
 
-    public AttackResult Attack(IAttackable target)
+    public AttackResult Attack(ITarget target)
     {
         var distance = this.DistanceFrom(target);
         if (_meleeWeapon.CanHit(distance))

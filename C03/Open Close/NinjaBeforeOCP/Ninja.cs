@@ -17,7 +17,7 @@ public class Ninja : IAttacker
         Position = position ?? Vector2.Zero;
     }
 
-    public AttackResult Attack(IAttackable target)
+    public AttackResult Attack(ITarget target)
     {
         var distance = this.DistanceFrom(target);
         if (_sword.CanHit(distance))
