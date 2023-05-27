@@ -6,10 +6,10 @@ var app = builder.Build();
 app.MapGet("/", async (HttpContext context) =>
 {
     // Create actors
-    var target = new Ninja("The Unseen Mirage");
-    var ninja = new Ninja("The Blue Phantom");
+    var theBluePhantom = new Ninja("The Blue Phantom");
+    var theUnseenMirage = new Ninja("The Unseen Mirage");
 
     // Execute the sequence of actions
-    await Logic.ExecuteSequenceAsync(ninja, target, writeAsync: s => context.Response.WriteAsync(s));
+    await Logic.ExecuteSequenceAsync(theBluePhantom, theUnseenMirage, writeAsync: s => context.Response.WriteAsync(s));
 });
 app.Run();
